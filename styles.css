@@ -148,7 +148,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 .hero-photo, .hero::after { position: absolute; z-index: -1; inset: 0; }
 .hero-photo {
-  background: url("hero-outreach-campaign.jpg") center 48% / cover no-repeat;
+  background: url("images/hero-outreach-campaign.jpg") center 48% / cover no-repeat;
 }
 .hero::after {
   content: "";
