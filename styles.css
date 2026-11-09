@@ -148,7 +148,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 .hero-photo, .hero::after { position: absolute; z-index: -1; inset: 0; }
 .hero-photo {
-  background: url("images/hero-outreach-campaign.jpg") center 48% / cover no-repeat;
+  background: url("images/outreach2.JPG") center 48% / cover no-repeat;
 }
 .hero::after {
   content: "";
@@ -345,6 +345,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .button-outline { min-height: 41px; padding-inline: 14px; border-color: #c7d7cc; background: transparent; color: var(--green-700); font-size: 12px; }
 .button-outline:hover { background: var(--green-700); color: white; }
 
+.outreach-section { background: var(--paper); }
+.outreach-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.outreach-card { margin: 0; overflow: hidden; border-radius: 4px; background: var(--cream); }
+.outreach-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.outreach-card figcaption { padding: 14px 16px; color: var(--green-950); font-size: 13px; font-weight: 700; }
+
 .closing-section { position: relative; overflow: hidden; isolation: isolate; background: var(--teal-700); color: white; }
 .closing-inner { position: relative; z-index: 1; padding-block: 83px 91px; text-align: center; }
 .closing-inner .eyebrow { justify-content: center; }
@@ -454,6 +460,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .centers-panel { padding: 18px; }
   .city-tabs { gap: 2px; }
   .city-tab { padding-inline: 9px; font-size: 11px; }
+  .outreach-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
   .footer-main { grid-template-columns: 1fr 1fr; }
 }
 
@@ -527,6 +534,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .centers-bottom-cta { flex-wrap: wrap; padding: 15px; gap: 10px; }
   .centers-bottom-cta div { min-width: calc(100% - 40px); }
   .centers-bottom-cta .button { margin-left: 35px; }
+  .outreach-grid { gap: 10px; }
+  .outreach-card figcaption { padding: 10px; font-size: 12px; }
   .closing-inner { padding-block: 68px 74px; }
   .closing-inner h2 { font-size: 39px; }
   .closing-inner > p:not(.eyebrow) { max-width: 300px; margin: 14px auto 22px; font-size: 14px; }
