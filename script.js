@@ -85,3 +85,86 @@ cityTabs.forEach((tab, index) => {
 
 const currentYear = document.querySelector("#current-year");
 if (currentYear) currentYear.textContent = String(new Date().getFullYear());
+
+const outreachDialog = document.querySelector(".outreach-dialog");
+const outreachDialogImage = document.querySelector(".outreach-dialog-image");
+const outreachDialogCaption = document.querySelector("#outreach-dialog-caption");
+const outreachDialogClose = document.querySelector(".outreach-dialog-close");
+
+if (
+  outreachDialog
+  && outreachDialogImage
+  && outreachDialogCaption
+  && outreachDialogClose
+  && typeof outreachDialog.showModal === "function"
+) {
+  document.querySelectorAll(".outreach-photo").forEach((button) => {
+    button.addEventListener("click", () => {
+      const image = button.querySelector("img");
+      const caption = button.closest("figure")?.querySelector("figcaption");
+      if (!image || !caption) return;
+
+      outreachDialogImage.src = image.currentSrc || image.src;
+      outreachDialogImage.alt = image.alt;
+      outreachDialogCaption.textContent = caption.textContent;
+      outreachDialog.showModal();
+    });
+  });
+
+  outreachDialogClose.addEventListener("click", () => outreachDialog.close());
+  outreachDialog.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      outreachDialog.close();
+    }
+  });
+  outreachDialog.addEventListener("click", (event) => {
+    if (event.target === outreachDialog) outreachDialog.close();
+  });
+}
+
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
+  const revealSelector = [
+    ".intro-copy",
+    ".intro-visual",
+    ".purpose-section .section-heading",
+    ".purpose-card",
+    ".menace-section .section-heading",
+    ".menace-image",
+    ".stat-card",
+    ".complications-section .section-heading",
+    ".complication-photo",
+    ".complication-card",
+    ".symptoms-content",
+    ".symptoms-visual",
+    ".centers-top",
+    ".centers-visual",
+    ".centers-panel",
+    ".centers-bottom-cta",
+    ".outreach-section .section-heading",
+    ".outreach-card",
+  ].join(", ");
+  const revealTargets = document.querySelectorAll(revealSelector);
+
+  [".purpose-grid", ".stat-stack", ".complication-cards", ".outreach-grid"].forEach((groupSelector) => {
+    document.querySelectorAll(groupSelector).forEach((group) => {
+      [...group.children].forEach((item, index) => {
+        item.style.setProperty("--reveal-delay", `${Math.min(index, 4) * 90}ms`);
+      });
+    });
+  });
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("is-visible");
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+
+  document.documentElement.classList.add("motion-ready");
+  revealTargets.forEach((target) => {
+    target.classList.add("reveal");
+    revealObserver.observe(target);
+  });
+}
